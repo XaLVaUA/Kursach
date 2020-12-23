@@ -271,11 +271,11 @@ namespace Kursach.Models
             var averageQueue2MaxLength = _resultStatisticsCollection.Average(x => x.Queue2MaxLength);
 
             Console.WriteLine($"Averages");
-            Console.WriteLine($"Idle probability: {averageIdleProbability}");
-            Console.WriteLine($"Queue1 average length: {averageQueue1AverageLength}");
-            Console.WriteLine($"Queue1 max length: {averageQueue1MaxLength}");
-            Console.WriteLine($"Queue2 average length: {averageQueue2AverageLength}");
-            Console.WriteLine($"Queue2 max length: {averageQueue2MaxLength}");
+            Console.WriteLine($"Idle probability: {Math.Round(averageIdleProbability, 8)}");
+            Console.WriteLine($"Queue1 average length: {Math.Round(averageQueue1AverageLength, 8)}");
+            Console.WriteLine($"Queue1 max length: {Math.Round(averageQueue1MaxLength, 8)}");
+            Console.WriteLine($"Queue2 average length: {Math.Round(averageQueue2AverageLength, 8)}");
+            Console.WriteLine($"Queue2 max length: {Math.Round(averageQueue2MaxLength, 8)}");
         }
     }
 }
