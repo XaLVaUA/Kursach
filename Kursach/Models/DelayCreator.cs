@@ -8,7 +8,7 @@ namespace Kursach.Models
         
         public static double CreateNextTimeDelay(int mean, int deviation)
         {
-            return mean + Random.Next(-deviation, deviation);
+            return mean + Random.Next(-deviation, deviation + 1);
         }
     }
 }
