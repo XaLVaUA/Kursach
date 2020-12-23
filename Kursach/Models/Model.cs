@@ -29,12 +29,12 @@ namespace Kursach.Models
                 return;
             }
 
-            _ticksLimit = 5000;
-            _iterations = 1000;
+            _ticksLimit = 10000;
+            _iterations = 2;
 
             const int n1 = 5;
             const int n2 = 20;
-            const int n3 = 10;
+            const int n3 = 5;
 
             const int meanT1 = 5;
             const int meanT2 = 20;
@@ -168,16 +168,13 @@ namespace Kursach.Models
                 }
 
                 CalculateStatistics();
+
+                Console.WriteLine();
+                _resultStatisticsCollection.Last().Print();
+                Console.WriteLine();
             }
 
-            if (_iterations == 1)
-            {
-                _resultStatisticsCollection.Last().Print();
-            }
-            else
-            {
-                PrintAverageStatistics();
-            }
+            PrintAverageStatistics();
         }
 
         private void SaveStatistics(double ticks)
