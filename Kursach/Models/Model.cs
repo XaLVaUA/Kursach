@@ -30,7 +30,7 @@ namespace Kursach.Models
             }
 
             _ticksLimit = 10000;
-            _iterations = 3;
+            _iterations = 1000;
 
             const int n1 = 5;
             const int n2 = 20;
@@ -169,9 +169,9 @@ namespace Kursach.Models
 
                 CalculateStatistics();
 
-                Console.WriteLine();
-                _resultStatisticsCollection.Last().Print();
-                Console.WriteLine();
+                //Console.WriteLine();
+                //_resultStatisticsCollection.Last().Print();
+                //Console.WriteLine();
             }
 
             PrintAverageStatistics();
@@ -258,7 +258,8 @@ namespace Kursach.Models
                 Queue1AverageLength = queue1Average,
                 Queue1MaxLength = queue1Max,
                 Queue2AverageLength = queue2Average,
-                Queue2MaxLength = queue2Max
+                Queue2MaxLength = queue2Max,
+                UsefulSteps = lastP5Markers
             });
         }
 
@@ -269,13 +270,15 @@ namespace Kursach.Models
             var averageQueue1MaxLength = _resultStatisticsCollection.Average(x => x.Queue1MaxLength);
             var averageQueue2AverageLength = _resultStatisticsCollection.Average(x => x.Queue2AverageLength);
             var averageQueue2MaxLength = _resultStatisticsCollection.Average(x => x.Queue2MaxLength);
-
+            var averageUsefulSteps = _resultStatisticsCollection.Average(x => x.UsefulSteps);
+            
             Console.WriteLine($"Averages");
             Console.WriteLine($"Idle probability: {Math.Round(averageIdleProbability, 8)}");
             Console.WriteLine($"Queue1 average length: {Math.Round(averageQueue1AverageLength, 8)}");
             Console.WriteLine($"Queue1 max length: {Math.Round(averageQueue1MaxLength, 8)}");
             Console.WriteLine($"Queue2 average length: {Math.Round(averageQueue2AverageLength, 8)}");
             Console.WriteLine($"Queue2 max length: {Math.Round(averageQueue2MaxLength, 8)}");
+            Console.WriteLine($"Useful steps: {Math.Round(averageUsefulSteps, 8)}");
         }
     }
 }

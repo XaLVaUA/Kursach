@@ -13,6 +13,8 @@ namespace Kursach.Models.Statistics
         public double Queue2AverageLength { get; init; }
 
         public double Queue2MaxLength { get; init; }
+        
+        public double UsefulSteps { get; set; }
 
         public void Print()
         {
