@@ -30,11 +30,11 @@ namespace Kursach.Models
             }
 
             _ticksLimit = 10000;
-            _iterations = 2;
+            _iterations = 3;
 
             const int n1 = 5;
             const int n2 = 20;
-            const int n3 = 5;
+            const int n3 = 10;
 
             const int meanT1 = 5;
             const int meanT2 = 20;
@@ -222,7 +222,7 @@ namespace Kursach.Models
 
             var lastP5Markers = grouped["process"]["p5"][^1].Markers;
             var lastP6Markers = grouped["process"]["p6"][^1].Markers;
-            var idleProbability = (double)lastP6Markers / lastP5Markers;
+            var idleProbability = (double)lastP6Markers / (lastP6Markers + lastP5Markers);
 
             var create1P2Statistics = grouped["create1"]["p2"].GroupBy(x => x.Ticks).Select(x => x.Last()).ToList();
 
