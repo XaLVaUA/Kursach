@@ -226,28 +226,28 @@ namespace Kursach.Models
 
             var create1P2Statistics = grouped["create1"]["p2"].GroupBy(x => x.Ticks).Select(x => x.Last()).ToList();
 
-            var queue1Average = create1P2Statistics.Aggregate(((double Average, double LastTicks, int LastMarkers))(0, 0, 0), (res, item) =>
+            var queue1Average = (create1P2Statistics.Aggregate(((double Average, double LastTicks, int LastMarkers))(0, 0, 0), (res, item) =>
             {
-                res.Average += (double)res.LastMarkers * (item.Ticks - res.LastTicks);
+                res.Average += res.LastMarkers * (item.Ticks - res.LastTicks);
                 res.LastTicks = item.Ticks;
                 res.LastMarkers = item.Markers;
                 
                 return res;
-            }).Average / _ticksLimit;
+            }).Average + create1P2Statistics.Last().Markers) / _ticksLimit;
 
             var queue1Max = create1P2Statistics.Max(x => x.Markers);
             var queue1Sum = create1P2Statistics.Sum(x => x.Markers);
 
             var create2P2Statistics = grouped["create2"]["p2"].GroupBy(x => x.Ticks).Select(x => x.Last()).ToList();
 
-            var queue2Average = create2P2Statistics.Aggregate(((double Average, double LastTicks, int LastMarkers))(0, 0, 0), (res, item) =>
+            var queue2Average = (create2P2Statistics.Aggregate(((double Average, double LastTicks, int LastMarkers))(0, 0, 0), (res, item) =>
             {
-                res.Average += (double)res.LastMarkers * (item.Ticks - res.LastTicks);
+                res.Average += res.LastMarkers * (item.Ticks - res.LastTicks);
                 res.LastTicks = item.Ticks;
                 res.LastMarkers = item.Markers;
 
                 return res;
-            }).Average / _ticksLimit;
+            }).Average + create2P2Statistics.Last().Markers) / _ticksLimit;
 
             var queue2Max = create2P2Statistics.Max(x => x.Markers);
             var queue2Sum = create2P2Statistics.Sum(x => x.Markers);
